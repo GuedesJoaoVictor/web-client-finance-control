@@ -1,0 +1,33 @@
+<div class="d-flex align-items-center justify-content-center min-vh-100">
+  <div class="row w-100">
+    <div class="col-12 col-sm-8 col-md-6 col-lg-4 mx-auto">
+      <mat-card class="p-4">
+        <mat-card-header class="justify-content-center m-4">
+          <mat-card-title>Login</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <form class="d-flex flex-column" [formGroup]="form">
+            <mat-form-field appearance="outline">
+              <mat-label>Email: </mat-label>
+              <input matInput type="email" autocomplete="email" formControlName="email">
+              <mat-error>Email is required</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Password: </mat-label>
+              <input matInput type="password" autocomplete="current-password" formControlName="password">
+              <mat-error>Password is required</mat-error>
+            </mat-form-field>
+            <mat-hint>We will never share your data with anyone</mat-hint>
+            <button mat-raised-button color="primary" class="my-2" type="submit" (click)="submit()">Login</button>
+            <mat-card-actions class="justify-content-center">
+              <p>
+                Don't have an account?
+                <a href="/register">Register</a>
+              </p>
+            </mat-card-actions>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
