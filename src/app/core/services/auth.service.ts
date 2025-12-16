@@ -68,10 +68,10 @@ export class AuthService {
       const decoded = JSON.parse(decodedJson);
 
       return {
-        id: decoded.sub,
+        uuid: decoded.sub,
         email: decoded.email,
         name: decoded.name,
-        role: decoded.role ?? 'user'
+        role: decoded.role
       } as UserDTO;
 
     } catch (e) {

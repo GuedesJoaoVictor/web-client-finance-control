@@ -44,6 +44,7 @@ export class LoginComponent {
         next: (response) => {
           console.log('Login successful');
           this.authService.setToken(response.token);
+          console.log(this.authService.getUser());
         },
         error: (error) => {
           console.error('Login failed: ', error);
