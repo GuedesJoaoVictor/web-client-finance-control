@@ -1,8 +1,14 @@
 import { Component } from '@angular/core';
 import {MatError, MatFormField, MatHint, MatInput, MatLabel} from '@angular/material/input';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {MatDivider} from '@angular/material/list';
-import {MatCard, MatCardActions, MatCardContent, MatCardHeader, MatCardTitle} from '@angular/material/card';
+import {
+  MatCard,
+  MatCardActions,
+  MatCardContent,
+  MatCardHeader,
+  MatCardSubtitle,
+  MatCardTitle
+} from '@angular/material/card';
 import {MatButton} from '@angular/material/button';
 import {AuthService} from '../core/services/auth.service';
 
@@ -16,11 +22,9 @@ import {AuthService} from '../core/services/auth.service';
     MatError,
     MatHint,
     MatCard,
-    MatCardHeader,
-    MatCardTitle,
     MatCardContent,
     MatButton,
-    MatCardActions
+    MatCardActions,
   ],
   templateUrl: './login-component.html',
   styleUrl: './login-component.css',
@@ -44,7 +48,7 @@ export class LoginComponent {
         next: (response) => {
           console.log('Login successful');
           this.authService.setToken(response.token);
-          console.log(this.authService.getUser());
+          console.log(this.authService.getUser())
         },
         error: (error) => {
           console.error('Login failed: ', error);

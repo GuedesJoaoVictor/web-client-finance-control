@@ -69,6 +69,7 @@ export class AuthService {
 
       return {
         uuid: decoded.sub,
+        cpf: decoded.cpf,
         email: decoded.email,
         name: decoded.name,
         role: decoded.role

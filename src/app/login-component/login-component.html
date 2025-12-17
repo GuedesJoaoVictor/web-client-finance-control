@@ -1,28 +1,32 @@
 <div class="d-flex align-items-center justify-content-center min-vh-100">
   <div class="row w-100">
     <div class="col-12 col-sm-8 col-md-6 col-lg-4 mx-auto">
-      <mat-card class="p-4">
-        <mat-card-header class="justify-content-center m-4">
-          <mat-card-title>Login</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
+      <div class="mb-3 flex flex-column align-items-center justify-center">
+        <h1 class="text-center fs-1">
+          <i class="fa fa-dollar bg-green-500 rounded"></i>
+          Finance Control
+        </h1>
+        <h3 class="text-center fs-5">Login to your account and start control your life!</h3>
+      </div>
+      <mat-card class="p-5">
+        <mat-card-content class="m-4">
           <form class="d-flex flex-column" [formGroup]="form">
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="outline" class="my-2">
               <mat-label>Email: </mat-label>
               <input matInput type="email" autocomplete="email" formControlName="email">
               <mat-error>Email is required</mat-error>
             </mat-form-field>
-            <mat-form-field>
+            <mat-form-field class="mt-2" appearance="outline">
               <mat-label>Password: </mat-label>
               <input matInput type="password" autocomplete="current-password" formControlName="password">
               <mat-error>Password is required</mat-error>
             </mat-form-field>
-            <mat-hint>We will never share your data with anyone</mat-hint>
-            <button mat-raised-button color="primary" class="my-2" type="submit" (click)="submit()">Login</button>
+            <mat-hint class="my-2">We will never share your data with anyone</mat-hint>
+            <button mat-raised-button class="my-2 button-green button-color-white" type="submit" (click)="submit()">Login</button>
             <mat-card-actions class="justify-content-center">
               <p>
                 Don't have an account?
-                <a href="/register">Register</a>
+                <a matButton href="/register">Register</a>
               </p>
             </mat-card-actions>
           </form>
