@@ -19,7 +19,7 @@
               </mat-form-field>
               <mat-form-field appearance="outline" class="flex-fill">
                 <mat-label>CPF</mat-label>
-                <input matInput formControlName="cpf">
+                <input matInput formControlName="cpf" (input)="onCpfInput()" maxlength="14">
                 <mat-error>CPF is required</mat-error>
               </mat-form-field>
             </div>

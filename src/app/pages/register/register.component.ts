@@ -3,12 +3,12 @@ import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} fr
 import {MatButton} from "@angular/material/button";
 import {MatCard, MatCardActions, MatCardContent} from "@angular/material/card";
 import {MatError, MatFormField, MatHint, MatInput, MatLabel} from "@angular/material/input";
-import {AuthService} from '../core/services/auth.service';
+import {AuthService} from '../../core/services/auth.service';
 import {Router} from '@angular/router';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-register-component',
+  selector: 'app-register',
     imports: [
         FormsModule,
         MatButton,
@@ -22,8 +22,8 @@ import Swal from 'sweetalert2';
         MatLabel,
         ReactiveFormsModule
     ],
-  templateUrl: './register-component.html',
-  styleUrl: '../login-component/login-component.css',
+  templateUrl: './register.component.html',
+  styleUrl: '../login/login.component.css',
 })
 export class RegisterComponent {
 
@@ -38,9 +38,16 @@ export class RegisterComponent {
     });
   }
 
-  // validCpf(event: Event) {
-  //   let cpfPontuado = event.value.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
-  // }
+  onCpfInput(){
+    const control = this.form.get('cpf');
+    if (!control) return;
+    let value = control.value || '';
+    value = value.replace(/\D/g, '');
+    value = value.replace(/(\d{3})(\d)/, '$1.$2');
+    value = value.replace(/(\d{3})(\d)/, '$1.$2');
+    value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+    control.setValue(value, { emitEvent: false });
+  }
 
   submit() {
     if (this.form.valid) {
@@ -51,7 +58,6 @@ export class RegisterComponent {
         cpf,
         password
       }
-
       this.authService.register(user).subscribe({
         next: (response) => {
           console.log('Register successful');

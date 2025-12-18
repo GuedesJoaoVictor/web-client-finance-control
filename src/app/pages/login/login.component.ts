@@ -6,10 +6,10 @@ import {
   MatCardActions,
   MatCardContent,} from '@angular/material/card';
 import {MatButton} from '@angular/material/button';
-import {AuthService} from '../core/services/auth.service';
+import {AuthService} from '../../core/services/auth.service';
 
 @Component({
-  selector: 'app-login-component',
+  selector: 'app-login',
   imports: [
     MatFormField,
     MatLabel,
@@ -22,8 +22,8 @@ import {AuthService} from '../core/services/auth.service';
     MatButton,
     MatCardActions,
   ],
-  templateUrl: './login-component.html',
-  styleUrl: './login-component.css',
+  templateUrl: './login.component.html',
+  styleUrl: './login.component.css',
 })
 export class LoginComponent {
 
