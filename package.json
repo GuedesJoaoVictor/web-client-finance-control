@@ -36,8 +36,10 @@
     "@fortawesome/fontawesome-svg-core": "^7.1.0",
     "@fortawesome/free-brands-svg-icons": "^7.1.0",
     "@fortawesome/free-solid-svg-icons": "^7.1.0",
+    "@sweetalert2/ngx-sweetalert2": "^14.1.1",
     "bootstrap": "^5.3.8",
     "rxjs": "~7.8.0",
+    "sweetalert2": "^11.26.10",
     "tslib": "^2.3.0"
   },
   "devDependencies": {

@@ -19,6 +19,10 @@ export class AuthService {
     return this.httpClient.post<any>(`${this.baseUrl}/login`, { email, password });
   }
 
+  register(user: UserDTO) {
+    return this.httpClient.post<any>(`${this.baseUrl}/register`, user);
+  }
+
   setToken(token: string) {
     localStorage.setItem(this.TOKEN_KEY, token);
     const user = this.userFromToken(token);

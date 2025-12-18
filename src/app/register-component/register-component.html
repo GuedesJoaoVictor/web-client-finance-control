@@ -1,0 +1,49 @@
+<div class="d-flex align-items-center justify-content-center min-vh-100">
+  <div class="row w-100">
+    <div class="col-12 col-sm-8 col-md-6 col-lg-4 mx-auto">
+      <div class="mb-3 flex flex-column align-items-center justify-center">
+        <h1 class="text-center fs-1">
+          <i class="fa fa-dollar bg-green-500 rounded"></i>
+          Finance Control
+        </h1>
+        <h3 class="text-center fs-5">Create your account and start taking control of your money!</h3>
+      </div>
+      <mat-card class="p-5">
+        <mat-card-content class="m-4">
+          <form class="d-flex flex-column" [formGroup]="form">
+            <div class="d-flex gap-3">
+              <mat-form-field appearance="outline" class="flex-fill">
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="name">
+                <mat-error>Name is required</mat-error>
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="flex-fill">
+                <mat-label>CPF</mat-label>
+                <input matInput formControlName="cpf">
+                <mat-error>CPF is required</mat-error>
+              </mat-form-field>
+            </div>
+            <mat-form-field appearance="outline" class="my-2">
+              <mat-label>Email: </mat-label>
+              <input matInput type="email" autocomplete="email" formControlName="email">
+              <mat-error>Email is required</mat-error>
+            </mat-form-field>
+            <mat-form-field class="mt-2" appearance="outline">
+              <mat-label>Password: </mat-label>
+              <input matInput type="password" autocomplete="current-password" formControlName="password">
+              <mat-error>Password is required</mat-error>
+            </mat-form-field>
+            <mat-hint class="my-2">We will never share your data with anyone</mat-hint>
+            <button mat-raised-button class="my-2 button-green button-color-white" type="submit" (click)="submit()">Register</button>
+            <mat-card-actions class="justify-content-center">
+              <p>
+                Already have an account?
+                <a matButton href="/login">Login</a>
+              </p>
+            </mat-card-actions>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

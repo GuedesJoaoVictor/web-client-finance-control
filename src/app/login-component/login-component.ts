@@ -4,11 +4,7 @@ import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/
 import {
   MatCard,
   MatCardActions,
-  MatCardContent,
-  MatCardHeader,
-  MatCardSubtitle,
-  MatCardTitle
-} from '@angular/material/card';
+  MatCardContent,} from '@angular/material/card';
 import {MatButton} from '@angular/material/button';
 import {AuthService} from '../core/services/auth.service';
 
@@ -48,7 +44,6 @@ export class LoginComponent {
         next: (response) => {
           console.log('Login successful');
           this.authService.setToken(response.token);
-          console.log(this.authService.getUser())
         },
         error: (error) => {
           console.error('Login failed: ', error);
