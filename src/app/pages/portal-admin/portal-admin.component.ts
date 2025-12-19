@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
 import {MatGridList, MatGridTile} from '@angular/material/grid-list';
+import {MatCard, MatCardContent, MatCardTitle} from '@angular/material/card';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-portal-admin',
   imports: [
-    MatGridList,
-    MatGridTile
+    MatCard,
+    MatCardTitle,
+    MatCardContent
   ],
   templateUrl: './portal-admin.component.html',
   styleUrl: './portal-admin.component.css',
@@ -14,26 +17,34 @@ export class PortalAdminComponent {
 
   public itens = [
     {
-      label: 'Bancos',
-      url: 'portal-admin/bancos',
+      label: 'Banks',
+      description: 'Banks registered in the system',
+      url: 'portal-admin/banks',
       icon: 'bank'
     },
     {
-      label: 'Categorias',
-      url: 'portal-admin/categorias',
-      icon: 'category'
+      label: 'Categories',
+      description: 'Revenues and expenses categories',
+      url: 'portal-admin/categories',
+      icon: 'list'
     },
     {
-      label: 'Usuários',
-      url: 'portal-admin/usuarios',
-      icon: 'people'
+      label: 'Users',
+      description: 'All Users registered in the system',
+      url: 'portal-admin/users',
+      icon: 'user'
     },
     {
-      label: 'Vinculos',
-      url: 'portal-admin/vinculos',
+      label: 'Account links',
+      description: 'Links between users and banks',
+      url: 'portal-admin/links',
       icon: 'link'
     }
   ]
 
-  constructor() {}
+  constructor(private router: Router) {}
+
+  redirect(url: string) {
+    this.router.navigate([`/${url}`]).then();
+  }
 }

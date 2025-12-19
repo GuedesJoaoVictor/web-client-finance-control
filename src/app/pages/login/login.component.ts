@@ -9,6 +9,7 @@ import {MatButton} from '@angular/material/button';
 import {AuthService} from '../../core/services/auth.service';
 import {UserDTO} from '../../core/dto/user.dto';
 import {Router} from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -52,6 +53,7 @@ export class LoginComponent {
         },
         error: (error) => {
           console.error('Login failed: ', error);
+          Swal.fire('Login failed', 'Internal server error', 'error');
         }
       });
     }
