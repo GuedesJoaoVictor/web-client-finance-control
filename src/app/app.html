@@ -1,1 +1,8 @@
-<router-outlet />
+<app-header></app-header>
+<main [hidden]="loadingService.show">
+  <router-outlet />
+</main>
+
+@if (loadingService.show) {
+  <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+}
