@@ -7,6 +7,8 @@ import {
   MatCardContent,} from '@angular/material/card';
 import {MatButton} from '@angular/material/button';
 import {AuthService} from '../../core/services/auth.service';
+import {UserDTO} from '../../core/dto/user.dto';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -29,7 +31,7 @@ export class LoginComponent {
 
   public form: FormGroup;
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
     this.form = this.fb.group({
       email: ['', [Validators.email, Validators.required]],
       password: ['', [Validators.required]]
@@ -44,6 +46,9 @@ export class LoginComponent {
         next: (response) => {
           console.log('Login successful');
           this.authService.setToken(response.token);
+          const user: UserDTO = this.authService.getUser()!;
+          const portal = user.role === 'ADMIN' ? 'portal-admin' : 'portal-user';
+          this.router.navigate([`/${portal}`]).then();
         },
         error: (error) => {
           console.error('Login failed: ', error);

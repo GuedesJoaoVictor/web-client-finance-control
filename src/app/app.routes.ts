@@ -15,5 +15,9 @@ export const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
+  },
+  {
+    path: 'portal-admin',
+    loadChildren: () => import('./pages/portal-admin/portal-admin.module').then(m => m.PortalAdminModule)
   }
 ];
