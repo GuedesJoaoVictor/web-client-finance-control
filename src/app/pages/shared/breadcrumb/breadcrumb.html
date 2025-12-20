@@ -1,0 +1,10 @@
+<nav class="breadcrumb-nav">
+  <mat-chip-listbox>
+    @for (breadcrumb of breadCrumbs; track $index) {
+      <mat-chip (click)="redirectTo(breadcrumb.url)">{{ breadcrumb }}</mat-chip>
+    }
+    <mat-chip>Home</mat-chip>
+    <mat-chip>Dashboard</mat-chip>
+    <mat-chip>Principal</mat-chip>
+  </mat-chip-listbox>
+</nav>

@@ -1,27 +1,33 @@
 import { Component } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {MatFormField, MatLabel} from '@angular/material/input';
-import {MatIcon} from '@angular/material/icon';
-import {MatMenu} from '@angular/material/menu';
-import {MatDivider} from '@angular/material/list';
-import {MatChip, MatChipListbox} from '@angular/material/chips';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatButtonModule } from '@angular/material/button';
+import { AuthService } from '../../../core/services/auth.service';
+import { WritableSignal } from '@angular/core';
+import { UserDTO } from '../../../core/dto/user.dto';
 
 @Component({
   selector: 'app-header',
+  standalone: true,
   imports: [
-    MatFormField,
-    MatLabel,
-    MatIcon,
-    MatMenu,
-    MatDivider,
-    MatChipListbox,
-    MatChip
+    MatIconModule,
+    MatMenuModule,
+    MatDividerModule,
+    MatButtonModule
   ],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css',
+  styleUrl: './header.component.css'
 })
 export class HeaderComponent {
 
-  userMenu = new MatMenu();
+  user: WritableSignal<UserDTO | null>;
 
+  constructor(private authService: AuthService) {
+    this.user = this.authService.user;
+  }
+
+  logout(): void {
+    this.authService.logout();
+  }
 }

@@ -53,7 +53,7 @@ export class LoginComponent {
         },
         error: (error) => {
           console.error('Login failed: ', error);
-          Swal.fire('Login failed', 'Internal server error', 'error');
+          Swal.fire('Login failed', error.error.error, 'error');
         }
       });
     }

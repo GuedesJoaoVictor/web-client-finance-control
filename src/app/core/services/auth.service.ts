@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Injectable, signal} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {ActivatedRoute, Router} from '@angular/router';
 import {env} from '../../enviroment/env';
@@ -12,8 +12,18 @@ export class AuthService {
   private readonly TOKEN_KEY = 'auth_token';
   private readonly USER_KEY = 'auth_user';
   private baseUrl = `${env.api}/auth`
+  public user = signal<UserDTO | null>(null);
 
-  constructor(private httpClient: HttpClient, private router: Router, private route: ActivatedRoute) {}
+  constructor(private httpClient: HttpClient, private router: Router, private route: ActivatedRoute) {
+    const storedUser = localStorage.getItem(this.USER_KEY);
+    if (storedUser) {
+      try {
+        this.user.set(JSON.parse(storedUser));
+      } catch {
+        this.user.set(null);
+      }
+    }
+  }
 
   login(email: string, password: string) {
     return this.httpClient.post<any>(`${this.baseUrl}/login`, { email, password });
@@ -23,11 +33,20 @@ export class AuthService {
     return this.httpClient.post<any>(`${this.baseUrl}/register`, user);
   }
 
+  logout(): void {
+    localStorage.removeItem(this.TOKEN_KEY);
+    localStorage.removeItem(this.USER_KEY);
+    this.user.set(null);
+    this.router.navigate(['/login']).then();
+  }
+
   setToken(token: string) {
     localStorage.setItem(this.TOKEN_KEY, token);
     const user = this.userFromToken(token);
     if (user) {
       localStorage.setItem(this.USER_KEY, JSON.stringify(user));
+      console.log('User saved in token:', user);
+      this.user.set(user);
     } else {
       console.error('User not found in token');
     }

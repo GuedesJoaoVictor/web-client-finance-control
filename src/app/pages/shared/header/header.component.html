@@ -1,68 +1,51 @@
-<!-- No seu template principal -->
 <header class="app-header">
   <div class="header-container">
-    <!-- Logo e Título -->
     <div class="header-brand">
       <div class="logo-container">
-        <i class="fas fa-rocket logo-icon"></i>
+        <i class="fas fa-money-bill-trend-up logo-icon"></i>
       </div>
       <div class="brand-text">
-        <h1 class="app-title">Dashboard</h1>
-        <p class="app-subtitle">Painel de Controle</p>
+        <h1 class="app-title">Finance control</h1>
+        <p class="app-subtitle">Control</p>
       </div>
     </div>
 
-    <!-- Barra de Busca -->
-    <div class="search-container">
-      <mat-form-field appearance="outline" class="search-field">
-        <mat-label>Pesquisar...</mat-label>
-        <input matInput placeholder="Digite para buscar">
-        <button mat-icon-button matSuffix>
-          <mat-icon>search</mat-icon>
-        </button>
-      </mat-form-field>
-    </div>
+    @if (user()) {
+      <div class="user-menu">
+        <div class="user-profile" [matMenuTriggerFor]="userMenu">
+          <img
+            src="https://ui-avatars.com/api/?name=Usuario&background=3f51b5&color=fff"
+            alt="Usuário"
+            class="user-avatar"
+          >
 
-    <!-- Menu do Usuário -->
-    <div class="user-menu">
-      <button mat-icon-button class="notification-btn">
-        <mat-icon matBadgeColor="warn">notifications</mat-icon>
-      </button>
+          <div class="user-info">
+            <span class="user-name">{{ user()!.name }}</span>
+            <span class="user-role">{{ user()!.role }}</span>
+          </div>
 
-      <div class="user-profile">
-        <img src="https://ui-avatars.com/api/?name=Usuario&background=3f51b5&color=fff"
-             alt="Usuário" class="user-avatar">
-        <div class="user-info">
-          <span class="user-name">Usuário</span>
-          <span class="user-role">Administrador</span>
+          <mat-icon>arrow_drop_down</mat-icon>
         </div>
-        <mat-icon>arrow_drop_down</mat-icon>
-      </div>
 
-      <mat-menu userMenu="matMenu">
-        <button mat-menu-item>
-          <mat-icon>person</mat-icon>
-          <span>Meu Perfil</span>
-        </button>
-        <button mat-menu-item>
-          <mat-icon>settings</mat-icon>
-          <span>Configurações</span>
-        </button>
-        <mat-divider></mat-divider>
-        <button mat-menu-item>
-          <mat-icon>logout</mat-icon>
-          <span>Sair</span>
-        </button>
-      </mat-menu>
-    </div>
+        <mat-menu #userMenu="matMenu">
+          <button mat-menu-item>
+            <mat-icon>person</mat-icon>
+            <span>Profile</span>
+          </button>
+
+          <button mat-menu-item>
+            <mat-icon>settings</mat-icon>
+            <span>Settings</span>
+          </button>
+
+          <mat-divider></mat-divider>
+
+          <button mat-menu-item (click)="logout()">
+            <mat-icon>logout</mat-icon>
+            <span>Logout</span>
+          </button>
+        </mat-menu>
+      </div>
+    }
   </div>
 </header>
-
-<!-- Breadcrumb opcional -->
-<nav class="breadcrumb-nav">
-  <mat-chip-listbox>
-    <mat-chip>Home</mat-chip>
-    <mat-chip>Dashboard</mat-chip>
-    <mat-chip selected>Principal</mat-chip>
-  </mat-chip-listbox>
-</nav>
