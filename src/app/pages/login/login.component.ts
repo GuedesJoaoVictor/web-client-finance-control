@@ -49,6 +49,7 @@ export class LoginComponent {
           this.authService.setToken(response.token);
           const user: UserDTO = this.authService.getUser()!;
           const portal = user.role === 'ADMIN' ? 'portal-admin' : 'portal-user';
+          sessionStorage.setItem("portal-selecionado", portal);
           this.router.navigate([`/${portal}`]).then();
         },
         error: (error) => {

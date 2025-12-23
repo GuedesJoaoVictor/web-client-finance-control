@@ -1,10 +1,10 @@
-<div class="d-flex p-4 justify-content-center min-vh-100">
+<div class="d-flex p-4 justify-content-center min-vh-100 dashboard-bg">
   <div class="container-fluid">
     <div class="row justify-content-center">
       <div class="col-12 col-lg-10 col-xl-8">
         <div class="cards-grid-container">
           @for (item of itens; track $index) {
-            <mat-card class="dashboard-card" (click)="redirect(item.url)">
+            <mat-card class="dashboard-card" (click)="redirect(item.url)" tabindex="0">
               <div class="card-content-wrapper">
                 <div class="icon-container">
                   <i [class]="'fa fa-' + item.icon + ' card-icon'"></i>

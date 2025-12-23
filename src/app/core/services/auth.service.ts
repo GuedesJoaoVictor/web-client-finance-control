@@ -129,7 +129,7 @@ export class AuthService {
 
   redirect() {
     this.route.queryParams.subscribe(params => {
-      const returnUrl = params['returnUrl'] || '/home';
+      const returnUrl = params['returnUrl'] || '/' + sessionStorage.getItem("portal-selecionado");
       this.router.navigateByUrl(returnUrl);
     });
   }

@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import {HeaderComponent} from './pages/shared/header/header.component';
 import {MatProgressSpinner} from '@angular/material/progress-spinner';
 import {LoadingService} from './core/services/loading.service';
+import {AuthService} from './core/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -13,5 +14,9 @@ import {LoadingService} from './core/services/loading.service';
 export class App {
   protected readonly title = signal('web-client');
 
-  constructor(protected loadingService: LoadingService) {}
+  constructor(protected loadingService: LoadingService, private authService: AuthService) {
+    if (authService.isLogged()) {
+      authService.redirect();
+    }
+  }
 }
