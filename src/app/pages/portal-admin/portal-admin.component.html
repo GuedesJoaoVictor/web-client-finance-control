@@ -4,17 +4,19 @@
       <div class="col-12 col-lg-10 col-xl-8">
         <div class="cards-grid-container">
           @for (item of itens; track $index) {
-            <mat-card class="dashboard-card" (click)="redirect(item.url)" tabindex="0">
-              <div class="card-content-wrapper">
-                <div class="icon-container">
-                  <i [class]="'fa fa-' + item.icon + ' card-icon'"></i>
+            <div (click)="redirect(item.url)" onkeypress="">
+              <mat-card class="dashboard-card" tabindex="0">
+                <div class="card-content-wrapper">
+                  <div class="icon-container">
+                    <i [class]="'fa fa-' + item.icon + ' card-icon'"></i>
+                  </div>
+                  <mat-card-title class="card-title">{{ item.label }}</mat-card-title>
+                  <mat-card-content class="card-description">
+                    <p>{{ item.description }}</p>
+                  </mat-card-content>
                 </div>
-                <mat-card-title class="card-title">{{ item.label }}</mat-card-title>
-                <mat-card-content class="card-description">
-                  <p>{{ item.description }}</p>
-                </mat-card-content>
-              </div>
-            </mat-card>
+              </mat-card>
+            </div>
           }
         </div>
       </div>
