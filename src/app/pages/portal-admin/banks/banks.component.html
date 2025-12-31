@@ -10,13 +10,9 @@
         <th mat-header-cell *matHeaderCellDef>Nome</th>
         <td mat-cell *matCellDef="let bank">{{ bank.name }}</td>
       </ng-container>
-      <ng-container matColumnDef="email">
-        <th mat-header-cell *matHeaderCellDef>Email</th>
-        <td mat-cell *matCellDef="let bank">{{ bank.email }}</td>
-      </ng-container>
-      <ng-container matColumnDef="cpf">
-        <th mat-header-cell *matHeaderCellDef>CPF</th>
-        <td mat-cell *matCellDef="let bank">{{ bank.cpf }}</td>
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef>Type</th>
+        <td mat-cell *matCellDef="let bank">{{ bank.type }}</td>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns" class="finance-row"></tr>
