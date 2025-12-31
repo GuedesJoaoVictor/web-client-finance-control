@@ -41,7 +41,7 @@ export class PortalAdminComponent {
     }
   ]
 
-  constructor(private router: Router) {}
+  constructor(private readonly router: Router) {}
 
   redirect(url: string) {
     this.router.navigate([`/${url}`]).then();

@@ -14,7 +14,7 @@ import {AuthService} from './core/services/auth.service';
 export class App {
   protected readonly title = signal('web-client');
 
-  constructor(protected loadingService: LoadingService, private authService: AuthService) {
+  constructor(protected loadingService: LoadingService, private readonly authService: AuthService) {
     if (authService.isLogged()) {
       authService.redirect();
     }

@@ -15,7 +15,7 @@ export class Breadcrumb {
 
   @Input() breadCrumbs: any[] = [];
 
-  constructor(private router: Router) {}
+  constructor(private readonly router: Router) {}
 
   redirectTo(url: string) {
     this.router.navigate([`/${url}`]).then();

@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {ActivatedRoute, Router} from '@angular/router';
 import {env} from '../../enviroment/env';
 import {UserDTO} from '../dto/user.dto';
 
@@ -10,9 +9,9 @@ import {UserDTO} from '../dto/user.dto';
 
 export class UserService {
 
-  private baseUrl = `${env.api}/user`
+  private readonly baseUrl = `${env.api}/user`
 
-  constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) {}
+  constructor(private readonly http: HttpClient) {}
 
   findAll() {
     return this.http.get<UserDTO[]>(`${this.baseUrl}/find-all`);

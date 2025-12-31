@@ -23,7 +23,7 @@ export class HeaderComponent {
 
   user: WritableSignal<UserDTO | null>;
 
-  constructor(private authService: AuthService) {
+  constructor(private readonly authService: AuthService) {
     this.user = this.authService.user;
   }
 

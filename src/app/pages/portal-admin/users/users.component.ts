@@ -18,7 +18,7 @@ export class UsersComponent implements OnInit {
 
   users = new MatTableDataSource<UserDTO>();
 
-  constructor(private userService: UserService) {}
+  constructor(private readonly userService: UserService) {}
 
   ngOnInit(): void {
     this.userService.findAll().subscribe({

@@ -11,10 +11,10 @@ import {UserDTO} from '../dto/user.dto';
 export class AuthService {
   private readonly TOKEN_KEY = 'auth_token';
   private readonly USER_KEY = 'auth_user';
-  private baseUrl = `${env.api}/auth`
+  private readonly baseUrl = `${env.api}/auth`
   public user = signal<UserDTO | null>(null);
 
-  constructor(private httpClient: HttpClient, private router: Router, private route: ActivatedRoute) {
+  constructor(private readonly httpClient: HttpClient, private readonly router: Router, private readonly route: ActivatedRoute) {
     const storedUser = localStorage.getItem(this.USER_KEY);
     if (storedUser) {
       try {
@@ -84,8 +84,8 @@ export class AuthService {
       }
 
       const base64 = payload
-        .replace(/-/g, '+')
-        .replace(/_/g, '/');
+        .replaceAll('-', '+')
+        .replaceAll('_', '/');
       const padded = base64.padEnd(base64.length + (4 - base64.length % 4) % 4, '=');
       const decodedJson = atob(padded);
       const decoded = JSON.parse(decodedJson);
@@ -100,14 +100,6 @@ export class AuthService {
 
     } catch (e) {
       console.error('Erro ao decodificar token:', e);
-
-      try {
-        const parts = token.split('.');
-        const payload = parts[1];
-      } catch (debugError) {
-        console.error('Erro no debug:', debugError);
-      }
-
       return null;
     }
   }

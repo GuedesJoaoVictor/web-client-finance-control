@@ -29,7 +29,7 @@ export class RegisterComponent {
 
   public form: FormGroup;
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
+  constructor(private readonly fb: FormBuilder, private readonly authService: AuthService, private readonly router: Router) {
     this.form = this.fb.group({
       name: ['', [Validators.required]],
       email: ['', [Validators.email, Validators.required]],
@@ -42,7 +42,7 @@ export class RegisterComponent {
     const control = this.form.get('cpf');
     if (!control) return;
     let value = control.value || '';
-    value = value.replace(/\D/g, '');
+    value = value.replaceAll(/\D/g, '');
     value = value.replace(/(\d{3})(\d)/, '$1.$2');
     value = value.replace(/(\d{3})(\d)/, '$1.$2');
     value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
