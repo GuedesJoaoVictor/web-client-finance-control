@@ -16,4 +16,16 @@ export class BankService {
     findAll() {
         return this.http.get<BankDTO[]>(`${this.baseUrl}/find-all`);
     }
+
+    create(BankDTO: BankDTO) {
+        return this.http.post<BankDTO>(`${this.baseUrl}/create`, BankDTO);
+    }
+
+    delete(id: number) {
+        return this.http.delete<void>(`${this.baseUrl}/delete/${id}`);
+    }
+
+    update(id: number, BankDTO: BankDTO) {
+        return this.http.put<BankDTO>(`${this.baseUrl}/update/${id}`, BankDTO);
+    }
 }
