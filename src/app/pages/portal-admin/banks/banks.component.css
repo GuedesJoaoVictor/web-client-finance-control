@@ -1,0 +1,34 @@
+.actions-cell {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.action-btn {
+  transition: all 0.2s ease-in-out;
+  border-radius: 8px;
+}
+
+.action-btn mat-icon {
+  font-size: 20px;
+}
+
+.action-btn.edit {
+  background-color: rgba(25, 118, 210, 0.08);
+  color: #1976d2;
+}
+
+.action-btn.edit:hover {
+  background-color: rgba(25, 118, 210, 0.18);
+  transform: scale(1.05);
+}
+
+.action-btn.delete {
+  background-color: rgba(211, 47, 47, 0.08);
+  color: #d32f2f;
+}
+
+.action-btn.delete:hover {
+  background-color: rgba(211, 47, 47, 0.18);
+  transform: scale(1.05);
+}

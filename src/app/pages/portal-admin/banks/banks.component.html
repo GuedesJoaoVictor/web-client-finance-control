@@ -40,11 +40,11 @@
       </ng-container>
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef>Actions</th>
-        <td mat-cell *matCellDef="let bank">
-          <button mat-icon-button color="primary" (click)="editBank(bank)">
+        <td mat-cell *matCellDef="let bank" class="d-flex gap-2 justify-content-center align-items-center">
+          <button mat-icon-button color="primary" class="action-btn edit align-items-center" (click)="editBank(bank)">
             <mat-icon>edit</mat-icon>
           </button>
-          <button mat-icon-button color="warn" (click)="deleteBank(bank)">
+          <button mat-icon-button color="warn" class="action-btn delete align-items-center" (click)="deleteBank(bank)">
             <mat-icon>delete</mat-icon>
           </button>
         </td>
