@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { BankService } from '../../../core/services/bank.service';
 import { BankDTO } from '../../../core/dto/bank.dto';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
@@ -8,10 +8,11 @@ import { MatCard, MatCardContent } from "@angular/material/card";
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormField, MatLabel, MatInput, MatError } from "@angular/material/input";
 import { MatAnchor } from "@angular/material/button";
+import { MatProgressSpinner } from "@angular/material/progress-spinner";
 
 @Component({
   selector: 'app-banks',
-  imports: [MatTableModule, MatIcon, MatCard, MatCardContent, MatFormField, MatLabel, MatInput, MatError, ReactiveFormsModule, MatAnchor],
+  imports: [MatTableModule, MatIcon, MatCard, MatCardContent, MatFormField, MatLabel, MatInput, MatError, ReactiveFormsModule, MatAnchor, MatProgressSpinner],
   templateUrl: './banks.component.html',
   styleUrls: ['./banks.component.css', '../users/users.component.css'],
 })
@@ -23,18 +24,22 @@ export class BanksComponent implements OnInit {
   bankForm!: FormGroup;
   editMode: boolean = false;
   currentBankId: number | null = null;
+  isLoading = signal(false);
 
   constructor(private readonly bankService: BankService, private readonly fb: FormBuilder) {
     this.initForm();
   }
 
   ngOnInit(): void {
+    this.isLoading.set(true)
     this.bankService.findAll().subscribe({
       next: (response) => {
         this.banks.data = response;
+        this.isLoading.set(false);
       }, error: (err) => {
         console.error('Error fetching banks:', err);
         Swal.fire('Error', 'Could not load banks. Please try again later.', 'error');
+        this.isLoading.set(false);
       }
     });
   }
