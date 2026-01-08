@@ -4,6 +4,7 @@ import {NgModule} from '@angular/core';
 import {UsersComponent} from './users/users.component';
 import {BanksComponent} from './banks/banks.component';
 import { CategoriesComponent } from './categories/categories.component';
+import { AccountLinksComponent } from './account-links/account-links.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'categories',
     component: CategoriesComponent
+  },
+  {
+    path: 'links',
+    component: AccountLinksComponent
   }
 ]
 
