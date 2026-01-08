@@ -3,6 +3,7 @@ import {PortalAdminComponent} from './portal-admin.component';
 import {NgModule} from '@angular/core';
 import {UsersComponent} from './users/users.component';
 import {BanksComponent} from './banks/banks.component';
+import { CategoriesComponent } from './categories/categories.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: 'banks',
     component: BanksComponent
+  },
+  {
+    path: 'categories',
+    component: CategoriesComponent
   }
 ]
 
