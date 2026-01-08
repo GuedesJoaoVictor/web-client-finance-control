@@ -6,23 +6,18 @@
         <mat-form-field appearance="outline">
           <mat-label>Name</mat-label>
           <input matInput formControlName="name" placeholder="Enter bank name" />
-          <mat-error *ngIf="bankForm.get('name')?.invalid && bankForm.get('name')?.touched">
+          <mat-error>
             Name is required and must be at least 3 characters long.
           </mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline" class="ms-3">
           <mat-label>Type</mat-label>
           <input matInput formControlName="type" placeholder="Enter bank type" />
-          <mat-error *ngIf="bankForm.get('type')?.invalid && bankForm.get('type')?.touched">
+          <mat-error>
             Type is required.
           </mat-error>
         </mat-form-field>
-        <button
-          mat-raised-button
-          color="primary"
-          class="ms-3 button-green button-color-white"
-          (click)="editMode ? updateBank() : addBank()"
-          [disabled]="bankForm.invalid">
+        <button mat-raised-button color="primary" class="ms-3 button-green button-color-white" (click)="editMode ? updateBank() : addBank()" [disabled]="bankForm.invalid">
           {{ editMode ? 'Update Bank' : 'Add Bank' }}
         </button>
       </form>

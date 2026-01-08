@@ -54,7 +54,26 @@ export class BanksComponent implements OnInit {
   }
 
   deleteBank(bank: BankDTO): void {
-    return;
+    Swal.fire({
+      title: 'Are you sure?',
+      text: `Do you want to delete the bank "${bank.name}"? This action cannot be undone.`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'Cancel'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.bankService.delete(bank.id).subscribe({
+          next: (response) => {
+            this.banks.data = this.banks.data.filter(b => b.id !== bank.id);
+            Swal.fire('Deleted!', `The bank "${bank.name}" has been deleted.`, 'success');
+          }, error: (err) => {
+            console.error('Error deleting bank:', err);
+            Swal.fire('Error', 'Could not delete the bank. Please try again later.', 'error');
+          }
+        });
+      }
+    })
   }
 
   updateBank(): void {
