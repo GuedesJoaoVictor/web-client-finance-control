@@ -1,6 +1,6 @@
 export class BankDTO {
-    id!: number;
-    name!: string;
-    type!: string;
-    vinculoId!: number;
+    id?: number;
+    name?: string;
+    type?: string;
+    vinculoId?: number;
 }

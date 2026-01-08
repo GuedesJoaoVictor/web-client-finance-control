@@ -22,6 +22,7 @@ export class BanksComponent implements OnInit {
   banks = new MatTableDataSource<BankDTO>();
   bankForm!: FormGroup;
   editMode: boolean = false;
+  currentBankId: number | null = null;
 
   constructor(private readonly bankService: BankService, private readonly fb: FormBuilder) {
     this.initForm();
@@ -51,6 +52,7 @@ export class BanksComponent implements OnInit {
       type: bank.type
     });
     this.editMode = true;
+    this.currentBankId = bank.id!;
   }
 
   deleteBank(bank: BankDTO): void {
@@ -63,7 +65,7 @@ export class BanksComponent implements OnInit {
       cancelButtonText: 'Cancel'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.bankService.delete(bank.id).subscribe({
+        this.bankService.delete(bank.id!).subscribe({
           next: (response) => {
             this.banks.data = this.banks.data.filter(b => b.id !== bank.id);
             Swal.fire('Deleted!', `The bank "${bank.name}" has been deleted.`, 'success');
@@ -77,11 +79,53 @@ export class BanksComponent implements OnInit {
   }
 
   updateBank(): void {
-    return;
+    if (this.bankForm.valid) {
+      const { name, type } = this.bankForm.value as BankDTO;
+      const dto: BankDTO = { id: this.currentBankId!, name, type }
+      this.bankService.update(this.currentBankId!, dto).subscribe({
+        next: (response) => {
+          const index = this.banks.data.findIndex(b => b.id === this.currentBankId);
+          if (index !== -1) {
+            this.banks.data[index] = response.data;
+            this.banks._updateChangeSubscription();
+          }
+          this.bankForm.reset({
+            name: '',
+            type: ''
+          });
+          this.editMode = false;
+          this.currentBankId = null;
+          Swal.fire('Success', `Bank "${response.data.name}" updated successfully.`, 'success');
+        },
+        error: (err) => {
+          console.error('Error updating bank:', err)
+          Swal.fire('Error', 'Could not update the bank. Please try again later.', 'error')
+        }
+      });
+    }
   }
 
   addBank(): void {
-    return;
+    if (this.bankForm.valid) {
+      const { name, type } = this.bankForm.value as BankDTO;
+      const dto: BankDTO = { name, type }
+
+      this.bankService.create(dto).subscribe({
+        next: (response) => {
+          this.banks.data = this.banks.data.concat(response.data);
+          this.banks._updateChangeSubscription();
+          this.bankForm.reset({
+            name: '',
+            type: ''
+          });
+          Swal.fire('Success', `Bank "${response.data.name}" added successfully.`, 'success');
+        },
+        error: (err) => {
+          console.error('Error adding bank:', err)
+          Swal.fire('Error', 'Could not add the bank. Please try again later.', 'error')
+        }
+      });
+    }
   }
 
 }
