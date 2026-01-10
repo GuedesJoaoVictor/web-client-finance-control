@@ -14,7 +14,7 @@ export class AccountLinksService {
     constructor(private readonly http: HttpClient) {}
 
     findAll() {
-        return this.http.get<UserBankDTO>(`${this.baseUrl}/find-all-links`);
+        return this.http.get<UserBankDTO[]>(`${this.baseUrl}/find-all/links`);
     }
 
 }
