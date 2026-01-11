@@ -1,0 +1,25 @@
+<div class="d-flex p-4 justify-content-center min-vh-100 dashboard-bg">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-10 col-xl-8">
+        <div class="cards-grid-container">
+          @for (item of itens; track $index) {
+            <div (click)="redirect(item.url)" onkeypress="">
+              <mat-card class="dashboard-card" tabindex="0">
+                <div class="card-content-wrapper">
+                  <div class="icon-container">
+                    <i [class]="'fa fa-' + item.icon + ' card-icon'"></i>
+                  </div>
+                  <mat-card-title class="card-title">{{ item.label }}</mat-card-title>
+                  <mat-card-content class="card-description">
+                    <p>{{ item.description }}</p>
+                  </mat-card-content>
+                </div>
+              </mat-card>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

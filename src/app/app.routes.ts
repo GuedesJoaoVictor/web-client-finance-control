@@ -19,5 +19,9 @@ export const routes: Routes = [
   {
     path: 'portal-admin',
     loadChildren: () => import('./pages/portal-admin/portal-admin.module').then(m => m.PortalAdminModule)
+  },
+  {
+    path: 'portal-user',
+    loadChildren: () => import('./pages/portal-user/portal-user.module').then(m => m.PortalUserModule)
   }
 ];
